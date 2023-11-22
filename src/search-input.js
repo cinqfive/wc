@@ -3,7 +3,7 @@ import { Component } from './component';
 import { Input } from './input';
 import "./search-input"
 
-searchs = [];
+const searchInputs = [];
 
 export class SearchInput extends Input {
     #resultPanel = new SearchResultPanel();
@@ -37,7 +37,7 @@ export class SearchInput extends Input {
     static register() {
         document.querySelectorAll('.search-box').forEach((element) => {
             const searchPanel = new SearchInput(element);
-            searchs.push(searchPanel)
+            searchInputs.push(searchPanel)
         });
     }
 }
