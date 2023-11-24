@@ -1,67 +1,65 @@
-import "./component.scss"
-
 export class Component {
-    /** @var {Element} element */
-    element = null;
+  /** @var {Element} element */
+  element = null;
 
-    /**
-     *
-     * @param {Element} element
-     */
-    constructor(element) {
-        if (!element) {
-            element = document.createElement('div');
-            document.body.appendChild(element);
-        }
-
-        this.element = element;
-        this.element.classList.add('invisible');
+  /**
+   *
+   * @param {Element} element
+   */
+  constructor(element) {
+    if (!element) {
+      element = document.createElement("div");
+      document.body.appendChild(element);
     }
 
-    show() {
-        this.element.classList.remove('invisible');
-    }
+    this.element = element;
+    this.element.classList.add("invisible");
+  }
 
-    hide() {
-        this.element.classList.add('invisible');
-    }
+  show() {
+    this.element.classList.remove("invisible");
+  }
 
-    addClass(classname) {
-        this.element.classList.add(classname);
-    }
+  hide() {
+    this.element.classList.add("invisible");
+  }
 
-    removeClass(classname) {
-        this.element.classList.remove(classname);
-    }
+  addClass(classname) {
+    this.element.classList.add(classname);
+  }
 
-    close() {
-        this.element.remove();
-    }
+  removeClass(classname) {
+    this.element.classList.remove(classname);
+  }
 
-    /**
-     * Append the this component to the other component in argument
-     * @param {Component} component
-     */
-    appendTo(component) {
-        component.#appendChild(this.element);
-    }
+  close() {
+    this.element.remove();
+  }
 
-    #appendChild(element) {
-        this.element.appendChild(element);
-    }
+  /**
+   * Append the this component to the other component in argument
+   * @param {Component} component
+   */
+  appendTo(component) {
+    component.#appendChild(this.element);
+  }
 
-    /**
-     * @param {{ top?: number; bottom?: number; left?: number; right?: number }}
-     */
-    setFixPositionning(coordinates) {
-        const styles = ['position: fixed'];
+  #appendChild(element) {
+    this.element.appendChild(element);
+  }
 
-        Object.entries(coordinates).forEach(([key, value]) => {
-            if (value !== undefined && value !== null) {
-                styles.push(`${key} : ${value}px`);
-            }
-        });
+  /**
+   * @param {{ top?: number; bottom?: number; left?: number; right?: number }}
+   */
+  setFixPositionning(coordinates) {
+    const styles = ["position: fixed"];
 
-        this.element.style = styles.join(';');
-    }
+    Object.entries(coordinates).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        styles.push(`${key} : ${value}px`);
+      }
+    });
+
+    this.element.style = styles.join(";");
+  }
 }
