@@ -2,8 +2,9 @@
   position: fixed;
 }
 
-.search-result {
+.result-panel {
   min-width: 300px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   box-shadow: #6666 0 0 10px;

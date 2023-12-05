@@ -10,6 +10,7 @@ export class Component {
     if (!element) {
       element = document.createElement("div");
       document.body.appendChild(element);
+      element.classList.add("component");
     }
 
     this.element = element;

@@ -6,6 +6,8 @@ export * from "./button";
 export * from "./component";
 export * from "./input";
 export * from "./search-input";
+export * from "./list";
+export * from "./list-item";
 
 export class WebComponents {
   static registerAll() {
