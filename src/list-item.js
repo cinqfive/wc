@@ -5,9 +5,9 @@ export class ListItem extends Component {
     super(element);
 
     if (content instanceof Component) {
-      element.appendChild(content);
+      this.element.appendChild(content);
     } else {
-      content.innerText = content;
+      this.element.innerText = content;
     }
   }
 }

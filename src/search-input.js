@@ -93,6 +93,11 @@ class SearchResultPanel extends Component {
   removeRows() {
     this.#list.removeChildren();
   }
+
+  show() {
+    super.show();
+    this.#list.show();
+  }
 }
 
 export class SearchController {
