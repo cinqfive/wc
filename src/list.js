@@ -16,7 +16,8 @@ export class List extends Component {
   }
 
   removeChildren() {
-    this.element.querySelectorAll("*").forEach((e) => e.remove());
+    this.element.innerHTML = '';
+    this.#children.forEach(c => c.close());
   }
 
   show() {

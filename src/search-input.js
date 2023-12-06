@@ -65,6 +65,7 @@ export class SearchInput extends Input {
   };
 
   onSearchResults = (result) => {
+    this.#resultPanel.removeContent();
     result.forEach((r) =>
       this.#resultPanel.addRow(this.#controller.convertResultRowToListItem(r)),
     );
@@ -113,6 +114,10 @@ class SearchResultPanel extends Component {
   show() {
     super.show();
     this.#list.show();
+  }
+
+  removeContent() {
+    this.#list.removeChildren();
   }
 }
 
