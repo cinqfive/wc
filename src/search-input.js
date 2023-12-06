@@ -25,6 +25,7 @@ export class SearchInput extends Input {
     const left = rect.x;
 
     this.element.addEventListener("input", this.onInput);
+    this.element.addEventListener("blur", this.onBlur);
     this.#resultPanel.addClass("result-panel");
     this.#resultPanel.setFixPositionning({
       left: left,
@@ -41,17 +42,29 @@ export class SearchInput extends Input {
     this.#resultPanel.show();
   }
 
-  onBlur() {
-    this.#resultPanel.hide();
-  }
+  /**
+   * Invoked when the search input goes out of focus. Will cancel the blur if the results
+   * panel is receiving the focus.
+   * @param {FocusEvent} event
+   */
+  onBlur = (event) => {
+    if (event.relatedTarget.closest('.result-panel')) {
+      event.preventDefault();
+      this.element.focus();
+    } else {
+      this.#resultPanel.hide();
+    }
+  };
 
   onInput = ({ data }) => {
     this.#controller.search(data, this.onSearchResults);
-  }
+  };
 
   onSearchResults = (result) => {
-    result.forEach((r) => this.#resultPanel.addRow(this.#controller.convertResultRowToListItem(r)));
-  }
+    result.forEach((r) =>
+      this.#resultPanel.addRow(this.#controller.convertResultRowToListItem(r)),
+    );
+  };
 
   setSearchController(controller) {
     this.#controller = controller;
@@ -70,11 +83,9 @@ export class SearchInput extends Input {
    * @returns {SearchInput}
    */
   static getById(id) {
-    return searchInputs.find(s => s.element.id === id);
+    return searchInputs.find((s) => s.element.id === id);
   }
 }
-
-
 
 class SearchResultPanel extends Component {
   #list = new List();
@@ -83,6 +94,7 @@ class SearchResultPanel extends Component {
     super();
 
     this.#list.appendTo(this);
+    this.element.tabIndex = 1;
     this.element.classList.add("result-panel");
   }
 

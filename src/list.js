@@ -15,11 +15,11 @@ export class List extends Component {
 
   show() {
     super.show();
-    this.#children.forEach(c => c.shwo());
+    this.#children.forEach((c) => c.show());
   }
 
   hide() {
     super.hide();
-    this.#children.forEach(c => c.hide());
+    this.#children.forEach((c) => c.hide());
   }
 }
