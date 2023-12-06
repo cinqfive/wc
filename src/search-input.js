@@ -48,7 +48,7 @@ export class SearchInput extends Input {
    * @param {FocusEvent} event
    */
   onBlur = (event) => {
-    if (event.relatedTarget.closest('.result-panel')) {
+    if (event.relatedTarget?.closest('.result-panel')) {
       event.preventDefault();
       this.element.focus();
     } else {
@@ -56,8 +56,12 @@ export class SearchInput extends Input {
     }
   };
 
-  onInput = ({ data }) => {
-    this.#controller.search(data, this.onSearchResults);
+  /**
+   * Handles the 'input' event on the inner input element.
+   * @param {InputEvent} param0
+   */
+  onInput = ({ target }) => {
+    this.#controller.search(target.value.trim(), this.onSearchResults);
   };
 
   onSearchResults = (result) => {

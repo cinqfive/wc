@@ -3,6 +3,12 @@ import { Component } from "./component";
 export class List extends Component {
   #children = [];
 
+  constructor(element) {
+    super(element);
+
+    this.element.classList.add('list');
+  }
+
   addItem(item) {
     item.appendTo(this);
     item.show();
