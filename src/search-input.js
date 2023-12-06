@@ -48,7 +48,7 @@ export class SearchInput extends Input {
    * @param {FocusEvent} event
    */
   onBlur = (event) => {
-    if (event.relatedTarget?.closest('.result-panel')) {
+    if (event.relatedTarget?.closest(".result-panel")) {
       event.preventDefault();
       this.element.focus();
     } else {

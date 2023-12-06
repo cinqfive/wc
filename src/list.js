@@ -6,7 +6,7 @@ export class List extends Component {
   constructor(element) {
     super(element);
 
-    this.element.classList.add('list');
+    this.element.classList.add("list");
   }
 
   addItem(item) {
@@ -16,8 +16,8 @@ export class List extends Component {
   }
 
   removeChildren() {
-    this.element.innerHTML = '';
-    this.#children.forEach(c => c.close());
+    this.element.innerHTML = "";
+    this.#children.forEach((c) => c.close());
   }
 
   show() {
