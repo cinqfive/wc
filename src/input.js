@@ -1,12 +1,12 @@
-import { Component } from "./component";
+import { Component } from './component';
 
 const inputs = [];
 
 export class Input extends Component {
   constructor(element) {
     super(element);
-    this.element.addEventListener("focus", this._onFocus);
-    this.element.addEventListener("blur", this._onBlur);
+    this.element.addEventListener('focus', this._onFocus);
+    this.element.addEventListener('blur', this._onBlur);
   }
   onInput = () => {};
 
@@ -23,7 +23,7 @@ export class Input extends Component {
   onBlur() {}
 
   static register() {
-    document.querySelectorAll(".input").forEach((element) => {
+    document.querySelectorAll('.input').forEach((element) => {
       const input = new Input(element);
       inputs.push(input);
     });

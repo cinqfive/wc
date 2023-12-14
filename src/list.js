@@ -1,4 +1,4 @@
-import { Component } from "./component";
+import { Component } from './component';
 
 export class List extends Component {
   #children = [];
@@ -6,7 +6,7 @@ export class List extends Component {
   constructor(element) {
     super(element);
 
-    this.element.classList.add("list");
+    this.element.classList.add('list');
   }
 
   addItem(item) {
@@ -16,7 +16,7 @@ export class List extends Component {
   }
 
   removeChildren() {
-    this.element.innerHTML = "";
+    this.element.innerHTML = '';
     this.#children.forEach((c) => c.close());
   }
 

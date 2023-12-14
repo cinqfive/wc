@@ -1,42 +1,44 @@
-import { Component } from "./component";
-import { Dialog } from "./dialog";
-import "./disposable-panel.scss";
+import { Component } from './component';
+
+function createElement() {
+  const element = document.createElement('div');
+  element.classList.add('disposable-panel');
+  return element;
+}
 
 export class DisposablePanel extends Component {
-div = new Dialog();
+  #mask = document.createElement('div');
 
-  #mask = null;
   static Disposition = {
-    Left: "left",
-    Right: "right",
+    Left: 'left',
+    Right: 'right',
   };
 
   #disposition = DisposablePanel.Disposition.Right;
 
-  constructor(element, disposition = DisposablePanel.Disposition.Right) {
-    super(element);
-    this.#mask = document.getElementById("dialog-mask");
-    this.#mask.classList.remove("invisible");
-    this.element.ClassList.add("disposable-item");
+  constructor(disposition = DisposablePanel.Disposition.Right) {
+    super(createElement());
+
     this.#disposition = disposition;
     this.setup();
   }
 
   setup() {
-    if (this.#disposition === DisposablePanel.Disposition.Right) {
-      DisposablePanel.Disposition.Right = 0;
-      DisposablePanel.Disposition.Left = "auto";
-    } else (this.#disposition === DisposablePanel.Disposition.Left) {
-      DisposablePanel.Disposition.Right = "auto";
-      DisposablePanel.Disposition.Left = 0;
-    }
-  }
+    this.#mask.classList.add('dialog-mask');
+    document.body.appendChild(this.element);
+    document.body.appendChild(this.#mask);
 
-  show() {
-    if (window.screen.width > 1400) {
-        this.div.showProduct()
+    if (this.#disposition === DisposablePanel.Disposition.Left) {
+      this.element.classList.add('left');
     } else {
+      this.element.classList.add('right');
+    }
 
+    return;
   }
-}
+
+  close() {
+    this.#mask.remove();
+    super.close();
+  }
 }

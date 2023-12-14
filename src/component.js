@@ -8,21 +8,21 @@ export class Component {
    */
   constructor(element) {
     if (!element) {
-      element = document.createElement("div");
+      element = document.createElement('div');
       document.body.appendChild(element);
-      element.classList.add("component");
+      element.classList.add('component');
     }
 
     this.element = element;
-    this.element.classList.add("invisible");
+    this.element.classList.add('invisible');
   }
 
   show() {
-    this.element.classList.remove("invisible");
+    this.element.classList.remove('invisible');
   }
 
   hide() {
-    this.element.classList.add("invisible");
+    this.element.classList.add('invisible');
   }
 
   addClass(classname) {
@@ -53,7 +53,7 @@ export class Component {
    * @param {{ top?: number; bottom?: number; left?: number; right?: number }}
    */
   setFixPositionning(coordinates) {
-    const styles = ["position: fixed"];
+    const styles = ['position: fixed'];
 
     Object.entries(coordinates).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
@@ -61,6 +61,6 @@ export class Component {
       }
     });
 
-    this.element.style = styles.join(";");
+    this.element.style = styles.join(';');
   }
 }

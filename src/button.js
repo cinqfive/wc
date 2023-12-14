@@ -1,4 +1,4 @@
-import { Component } from "./component";
+import { Component } from './component';
 
 const buttons = [];
 
@@ -13,15 +13,15 @@ export class Button extends Component {
   }
 
   setup() {
-    this.element.addEventListener("click", () => this.onClick());
+    this.element.addEventListener('click', () => this.onClick());
   }
 
   addOnClickListener(callback) {
-    this.element.addEventListener("click", callback);
+    this.element.addEventListener('click', callback);
   }
 
   removeEventListener(callback) {
-    this.element.removeEventListener("click", callback);
+    this.element.removeEventListener('click', callback);
   }
 
   onClick() {}
@@ -31,7 +31,7 @@ export class Button extends Component {
    * @param {{ top?: number; bottom?: number; left?: number; right?: number }} coordinates
    */
   setFixedCoordinates(coordinates) {
-    const styles = ["position: fixed"];
+    const styles = ['position: fixed'];
 
     Object.entries(coordinates).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
@@ -39,11 +39,11 @@ export class Button extends Component {
       }
     });
 
-    this.element.style = styles.join(";");
+    this.element.style = styles.join(';');
   }
 
   static register() {
-    document.querySelectorAll(".button").forEach((element) => {
+    document.querySelectorAll('.button').forEach((element) => {
       const button = new Button(element);
       buttons.push(button);
     });

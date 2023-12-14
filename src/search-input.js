@@ -1,8 +1,8 @@
-export * from "./input";
-import { Component } from "./component";
-import { Input } from "./input";
-import { List } from "./list";
-import "./search-input";
+export * from './input';
+import { Component } from './component';
+import { Input } from './input';
+import { List } from './list';
+import './search-input';
 
 const searchInputs = [];
 
@@ -24,9 +24,9 @@ export class SearchInput extends Input {
     const top = rect.bottom + 8;
     const left = rect.x;
 
-    this.element.addEventListener("input", this.onInput);
-    this.element.addEventListener("blur", this.onBlur);
-    this.#resultPanel.addClass("result-panel");
+    this.element.addEventListener('input', this.onInput);
+    this.element.addEventListener('blur', this.onBlur);
+    this.#resultPanel.addClass('result-panel');
     this.#resultPanel.setFixPositionning({
       left: left,
       top: top,
@@ -48,7 +48,7 @@ export class SearchInput extends Input {
    * @param {FocusEvent} event
    */
   onBlur = (event) => {
-    if (event.relatedTarget?.closest(".result-panel")) {
+    if (event.relatedTarget?.closest('.result-panel')) {
       event.preventDefault();
       this.element.focus();
     } else {
@@ -76,7 +76,7 @@ export class SearchInput extends Input {
   }
 
   static register() {
-    document.querySelectorAll(".search-input").forEach((element) => {
+    document.querySelectorAll('.search-input').forEach((element) => {
       const searchPanel = new SearchInput(element);
       searchInputs.push(searchPanel);
     });
@@ -100,7 +100,7 @@ class SearchResultPanel extends Component {
 
     this.#list.appendTo(this);
     this.element.tabIndex = 1;
-    this.element.classList.add("result-panel");
+    this.element.classList.add('result-panel');
   }
 
   addRow(row) {
