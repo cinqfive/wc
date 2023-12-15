@@ -1,0 +1,74 @@
+.overlay {
+  z-index: 10002;
+
+  &.dialog {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+    opacity: 1;
+    width: 700px;
+    height: fit-content;
+    border-radius: 8px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.panel {
+    position: fixed;
+    height: 100%;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: #000 0 0 20px;
+
+    &.right {
+      right: 0;
+    }
+
+    &.left {
+      left: 0;
+    }
+  }
+
+  .title {
+    font-size: 44px;
+    text-align: center;
+    line-height: 86px;
+  }
+
+  .close-button {
+    position: absolute;
+    display: flex;
+    top: 30px;
+    right: 16px;
+    width: 32px;
+    font-size: 24px;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+    line-height: 32px;
+    text-align: center;
+
+    &:hover {
+      background-color: rgb(255, 0, 0);
+      border-radius: 50px;
+      color: #fff;
+    }
+  }
+
+  .overlay-content {
+    width: 100%;
+    height: calc(100% - 86px);
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+  }
+}
