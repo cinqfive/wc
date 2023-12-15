@@ -8,6 +8,7 @@ function createElement() {
 
 export class DisposablePanel extends Component {
   #mask = document.createElement('div');
+  #closeButton = null;
 
   static Disposition = {
     Left: 'left',
@@ -35,6 +36,11 @@ export class DisposablePanel extends Component {
     }
 
     return;
+  }
+
+  registerCloseEventListener() {
+    this.#closeButton = this.element.querySelector('[role="close-button"]');
+    this.#closeButton?.addEventListener('click', () => { console.log('Closing'); this.close()});
   }
 
   close() {

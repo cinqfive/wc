@@ -2,28 +2,28 @@ import { Component } from './component';
 
 export class Dialog extends Component {
   #mask = document.createElement('div');
+  #closeButton = null;
 
-  constructor(title) {
+  constructor() {
     super();
-    this.#setup(title);
+    this.setup();
   }
 
-  #setup(title) {
+  setup() {
     document.body.appendChild(this.#mask);
     this.element.classList.add('dialog');
 
-    const titleSpan = document.createElement('span');
-    titleSpan.classList.add('title');
-
     this.#mask.classList.add('dialog-mask');
     document.body.appendChild(this.element);
-    this.element.appendChild(titleSpan);
-
-    titleSpan.innerText = title;
   }
 
   close() {
     this.#mask.remove();
     super.close();
+  }
+
+  registerCloseEventListener() {
+    this.#closeButton = this.element.querySelector('[role="close-button"]');
+    this.#closeButton?.addEventListener('click', () => { console.log('Closing'); this.close()});
   }
 }
