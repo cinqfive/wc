@@ -1,0 +1,9 @@
+.dialog-mask {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  background-color: rgb(92, 88, 88);
+  z-index: 10001;
+  opacity: 0.5;
+}

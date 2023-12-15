@@ -40,7 +40,7 @@ export class DisposablePanel extends Component {
 
   registerCloseEventListener() {
     this.#closeButton = this.element.querySelector('[role="close-button"]');
-    this.#closeButton?.addEventListener('click', () => { console.log('Closing'); this.close()});
+    this.#closeButton?.addEventListener('click', () => this.close());
   }
 
   close() {
