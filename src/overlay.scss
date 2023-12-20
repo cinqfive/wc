@@ -12,6 +12,7 @@
     opacity: 1;
     width: 700px;
     height: fit-content;
+    max-height: calc(100% - 128px);
     border-radius: 8px;
     padding-bottom: 16px;
     display: flex;
@@ -66,9 +67,18 @@
   .overlay-content {
     width: 100%;
     height: calc(100% - 86px);
+    max-height: 400px;
+    overflow-x: auto;
     display: flex;
     flex-direction: column;
 
     overflow-y: auto;
+  }
+
+  .action-buttons-container {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
   }
 }

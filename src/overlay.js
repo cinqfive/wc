@@ -10,7 +10,7 @@ function createElement(title) {
               <span class="material-symbols-outlined">close</span>
           </button>
           <div class="overlay-content"></div>
-                      `;
+          <div class="action-buttons-container"></buton`;
   document.body.appendChild(element);
   return element;
 }
@@ -18,6 +18,8 @@ function createElement(title) {
 export class Overlay extends Component {
   #mask = new DialogMask();
   #closeButton = null;
+  #positiveActionButton = null;
+  #negativeActionButton = null;
 
   static DisplayType = {
     Dialog: 'dialog',
@@ -34,7 +36,7 @@ export class Overlay extends Component {
     display = Overlay.DisplayType.Dialog,
     disposition = Overlay.PanelDisposition.Right,
   ) {
-    super(createElement(title?title:'Nouveaux Produit'));
+    super(createElement(title ? title : 'Nouveaux Produit'));
     this.element.classList.add('overlay');
 
     if (display === Overlay.DisplayType.Dialog) {
@@ -57,14 +59,28 @@ export class Overlay extends Component {
     super.show();
   }
 
-  close() {
+  close(ok = false) {
+    this.onClose(ok);
     this.#mask.close();
     super.close();
   }
 
+  onClose() {}
+
   #registerCloseEventListener() {
     this.#closeButton = this.element.querySelector('[role="close-button"]');
+    this.#positiveActionButton = this.element.querySelector(
+      'button[role="close-button-positive"]',
+    );
+    this.#negativeActionButton = this.element.querySelector(
+      'button[role="close-button-negative"]',
+    );
+
     this.#closeButton?.addEventListener('click', () => this.close());
+    this.#negativeActionButton?.addEventListener('click', () => this.close());
+    this.#positiveActionButton?.addEventListener('click', () =>
+      this.close(true),
+    );
   }
 
   setInnerHTML(html) {
@@ -73,9 +89,19 @@ export class Overlay extends Component {
     if (content) content.innerHTML = html;
   }
 
-  productInnerHTML(html) {
-    const content = this.element.querySelector('.overlay-content');
+  addPositiveActionButton(text = 'Valider') {
+    this.#positiveActionButton = document.createElement('button');
+    this.#positiveActionButton.classList.add('positive-ation-button');
+    this.#positiveActionButton.innerText = text;
+    this.#positiveActionButton.addEventListener('click', () =>
+      this.close(true),
+    );
+  }
 
-    if (content) content.innerHTML = html;
+  addNegativeActionButton(text = 'Anunuler') {
+    this.#negativeActionButton = document.createElement('button');
+    this.#positiveActionButton.classList.add('negative-ation-button');
+    this.#negativeActionButton.innerText = text;
+    this.#negativeActionButton?.addEventListener('click', () => this.close());
   }
 }
