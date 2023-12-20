@@ -5,12 +5,12 @@ function createElement(title) {
   const element = document.createElement('div');
 
   element.innerHTML = `
-        <span class="title">${title}</span>
-        <button class="close-button" role="close-button">
-            <span class="material-symbols-outlined">close</span>
-        </button>
-        <div class="overlay-content"></div>
-    `;
+          <span class="title">${title}</span>
+          <button class="close-button" role="close-button">
+              <span class="material-symbols-outlined">close</span>
+          </button>
+          <div class="overlay-content"></div>
+                      `;
   document.body.appendChild(element);
   return element;
 }
@@ -34,7 +34,7 @@ export class Overlay extends Component {
     display = Overlay.DisplayType.Dialog,
     disposition = Overlay.PanelDisposition.Right,
   ) {
-    super(createElement(title));
+    super(createElement(title?title:'Nouveaux Produit'));
     this.element.classList.add('overlay');
 
     if (display === Overlay.DisplayType.Dialog) {
@@ -68,6 +68,12 @@ export class Overlay extends Component {
   }
 
   setInnerHTML(html) {
+    const content = this.element.querySelector('.overlay-content');
+
+    if (content) content.innerHTML = html;
+  }
+
+  productInnerHTML(html) {
     const content = this.element.querySelector('.overlay-content');
 
     if (content) content.innerHTML = html;
