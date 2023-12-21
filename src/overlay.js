@@ -10,7 +10,7 @@ function createElement(title) {
               <span class="material-symbols-outlined">close</span>
           </button>
           <div class="overlay-content"></div>
-          <div class="action-buttons-container"></buton`;
+          <div class="action-buttons-container"><span class="flex-expand"></span></div>`;
   document.body.appendChild(element);
   return element;
 }
@@ -96,12 +96,14 @@ export class Overlay extends Component {
     this.#positiveActionButton.addEventListener('click', () =>
       this.close(true),
     );
+    this.element.querySelector('div.action-buttons-container')?.appendChild(this.#positiveActionButton);
   }
 
   addNegativeActionButton(text = 'Anunuler') {
     this.#negativeActionButton = document.createElement('button');
-    this.#positiveActionButton.classList.add('negative-ation-button');
+    this.#negativeActionButton.classList.add('negative-ation-button');
     this.#negativeActionButton.innerText = text;
     this.#negativeActionButton?.addEventListener('click', () => this.close());
+    this.element.querySelector('div.action-buttons-container')?.appendChild(this.#negativeActionButton);
   }
 }
