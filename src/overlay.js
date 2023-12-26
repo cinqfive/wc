@@ -20,6 +20,7 @@ export class Overlay extends Component {
   #closeButton = null;
   #positiveActionButton = null;
   #negativeActionButton = null;
+  #deleteActionButton = null;
 
   static DisplayType = {
     Dialog: 'dialog',
@@ -65,22 +66,17 @@ export class Overlay extends Component {
     super.close();
   }
 
-  onClose() {}
+  onClose() {
+    return true;
+  }
 
   #registerCloseEventListener() {
     this.#closeButton = this.element.querySelector('[role="close-button"]');
     this.#positiveActionButton = this.element.querySelector(
       'button[role="close-button-positive"]',
     );
-    this.#negativeActionButton = this.element.querySelector(
-      'button[role="close-button-negative"]',
-    );
 
     this.#closeButton?.addEventListener('click', () => this.close());
-    this.#negativeActionButton?.addEventListener('click', () => this.close());
-    this.#positiveActionButton?.addEventListener('click', () =>
-      this.close(true),
-    );
   }
 
   setInnerHTML(html) {
@@ -91,7 +87,7 @@ export class Overlay extends Component {
 
   addPositiveActionButton(text = 'Valider') {
     this.#positiveActionButton = document.createElement('button');
-    this.#positiveActionButton.classList.add('positive-ation-button');
+    this.#positiveActionButton.classList.add('positive-action-button');
     this.#positiveActionButton.innerText = text;
     this.#positiveActionButton.addEventListener('click', () =>
       this.close(true),
@@ -99,9 +95,9 @@ export class Overlay extends Component {
     this.element.querySelector('div.action-buttons-container')?.appendChild(this.#positiveActionButton);
   }
 
-  addNegativeActionButton(text = 'Anunuler') {
+  addNegativeActionButton(text = 'Annuler') {
     this.#negativeActionButton = document.createElement('button');
-    this.#negativeActionButton.classList.add('negative-ation-button');
+    this.#negativeActionButton.classList.add('negative-action-button');
     this.#negativeActionButton.innerText = text;
     this.#negativeActionButton?.addEventListener('click', () => this.close());
     this.element.querySelector('div.action-buttons-container')?.appendChild(this.#negativeActionButton);
