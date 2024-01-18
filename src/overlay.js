@@ -92,7 +92,9 @@ export class Overlay extends Component {
     this.#positiveActionButton.addEventListener('click', () =>
       this.close(true),
     );
-    this.element.querySelector('div.action-buttons-container')?.appendChild(this.#positiveActionButton);
+    this.element
+      .querySelector('div.action-buttons-container')
+      ?.appendChild(this.#positiveActionButton);
   }
 
   addNegativeActionButton(text = 'Annuler') {
@@ -100,6 +102,8 @@ export class Overlay extends Component {
     this.#negativeActionButton.classList.add('negative-action-button');
     this.#negativeActionButton.innerText = text;
     this.#negativeActionButton?.addEventListener('click', () => this.close());
-    this.element.querySelector('div.action-buttons-container')?.appendChild(this.#negativeActionButton);
+    this.element
+      .querySelector('div.action-buttons-container')
+      ?.appendChild(this.#negativeActionButton);
   }
 }

@@ -89,12 +89,11 @@
       margin-bottom: auto;
       cursor: pointer;
 
-
       &:nth-child(2) {
         margin-right: 8px;
       }
 
-      &:last-child{
+      &:last-child {
         margin-right: 16px;
       }
 
@@ -103,9 +102,9 @@
         background-color: #fff;
         cursor: pointer;
 
-      &.positive-action-button {
-        cursor: pointer;
-      }
+        &.positive-action-button {
+          cursor: pointer;
+        }
 
         &:hover {
           text-decoration: underline;

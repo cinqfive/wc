@@ -10,5 +10,6 @@ module.export = gulp.task('default', () => {
     gulp.src('src/*.js'),
     gulp.src('src/*.js').pipe(tsProject()),
     gulp.src('src/*.scss').pipe(sass()).pipe(concat('wc.css')),
+    gulp.src('assets/*').pipe(gulp.dest('dist/assets')),
   ).pipe(gulp.dest('dist'));
 });

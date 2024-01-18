@@ -1,4 +1,5 @@
 import { Button } from './button';
+import { Caroussel } from './caroussel';
 import { Input } from './input';
 import { SearchInput } from './search-input';
 
@@ -16,5 +17,6 @@ export class WebComponents {
     Button.register();
     Input.register();
     SearchInput.register();
+    Caroussel.register();
   }
 }
