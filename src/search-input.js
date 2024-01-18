@@ -61,9 +61,6 @@ export class SearchInput extends Input {
    * @param {InputEvent} param0
    */
   onInput = ({ target }) => {
-    console.log(target);
-    console.log(this.#controller);
-    console.log(this.#controller.search);
     this.#controller.search(target.value.trim(), this.onSearchResults);
   };
 
