@@ -60,9 +60,10 @@ export class Overlay extends Component {
   }
 
   close(ok = false) {
-    this.onClose(ok);
-    this.#mask.close();
-    super.close();
+    if (this.onClose(ok)) {
+      this.#mask.close();
+      super.close();
+    }
   }
 
   onClose() {
@@ -85,6 +86,11 @@ export class Overlay extends Component {
   }
 
   addPositiveActionButton(text = 'Valider') {
+    if (this.#positiveActionButton !== null) {
+      this.#positiveActionButton.element.innerText = text;
+      return;
+    }
+
     this.#positiveActionButton = document.createElement('button');
     this.#positiveActionButton.classList.add('positive-action-button');
     this.#positiveActionButton.innerText = text;
@@ -97,6 +103,11 @@ export class Overlay extends Component {
   }
 
   addNegativeActionButton(text = 'Annuler') {
+    if (this.#negativeActionButton !== null) {
+      this.#negativeActionButton.element.innerText = text;
+      return;
+    }
+
     this.#negativeActionButton = document.createElement('button');
     this.#negativeActionButton.classList.add('negative-action-button');
     this.#negativeActionButton.innerText = text;
