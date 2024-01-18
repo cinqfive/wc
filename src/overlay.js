@@ -20,7 +20,6 @@ export class Overlay extends Component {
   #closeButton = null;
   #positiveActionButton = null;
   #negativeActionButton = null;
-  #deleteActionButton = null;
 
   static DisplayType = {
     Dialog: 'dialog',
