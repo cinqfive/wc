@@ -15,6 +15,8 @@ function makeChevronHtml(orientation) {
 export class Caroussel extends Component {
   #chevronRight = null;
   #chevronLeft = null;
+  #items = null;
+  #currentIndex = 0;
 
   constructor(element) {
     super(element);
@@ -41,12 +43,27 @@ export class Caroussel extends Component {
     if (items.length > 1) {
       this.#chevronLeft.show();
       this.#chevronRight.show();
+
+      this.#chevronLeft.addOnClickListener(() => {
+        if (this.#currentIndex > 0) {
+          this.#items[this.#currentIndex].classList.remove('current');
+          this.#items[--this.#currentIndex].classList.add('current');
+        }
+      });
+
+      this.#chevronRight.addOnClickListener(() => {
+        if (this.#currentIndex < this.#items.length - 1) {
+          this.#items[this.#currentIndex].classList.remove('current');
+          this.#items[++this.#currentIndex].classList.add('current');
+        }
+      });
     }
 
     const width = window.innerWidth;
     items.forEach(item => {
       item.style = `width: ${width}px`;
     });
+    this.#items = items;
   }
 
   static register() {

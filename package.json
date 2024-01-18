@@ -29,5 +29,6 @@
     "watch": "nodemon -w src --exec gulp",
     "prettify": "prettier --write src gulpfile.js",
     "lint": "eslint src"
-  }
+  },
+  "dependencies": {}
 }
