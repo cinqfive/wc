@@ -87,7 +87,7 @@ export class Overlay extends Component {
 
   addPositiveActionButton(text = 'Valider') {
     if (this.#positiveActionButton !== null) {
-      this.#positiveActionButton.element.innerText = text;
+      this.#positiveActionButton.innerText = text;
       return;
     }
 
@@ -104,7 +104,7 @@ export class Overlay extends Component {
 
   addNegativeActionButton(text = 'Annuler') {
     if (this.#negativeActionButton !== null) {
-      this.#negativeActionButton.element.innerText = text;
+      this.#negativeActionButton.innerText = text;
       return;
     }
 
