@@ -20,10 +20,12 @@ export class Overlay extends Component {
   #closeButton = null;
   #positiveActionButton = null;
   #negativeActionButton = null;
+  #shouldDisplayMask = true;
 
   static DisplayType = {
     Dialog: 'dialog',
     Panel: 'panel',
+    FloatingPanel: 'floating-panel',
   };
 
   static PanelDisposition = {
@@ -31,37 +33,55 @@ export class Overlay extends Component {
     Right: 'right',
   };
 
+  /**
+   * Builds an Overlay
+   * @param {string} title The display title of the overlay
+   * @param {'dialog' | 'panel'} display The display type of the overlay
+   * @param {'left'|'right'} disposition The disposition of the overlay
+   * @param {Element} element An element to be used. When this is passed no new element will be instanciated.
+   */
   constructor(
     title,
     display = Overlay.DisplayType.Dialog,
     disposition = Overlay.PanelDisposition.Right,
+    element = null,
   ) {
-    super(createElement(title ? title : 'Nouveaux Produit'));
+    super(
+      element ? element : createElement(title ? title : 'Nouveaux Produit'),
+    );
     this.element.classList.add('overlay');
+    this.element.classList.add('invisible');
 
     if (display === Overlay.DisplayType.Dialog) {
       this.element.classList.add('dialog');
-    } else {
+    } else if (display === Overlay.DisplayType.Panel) {
       this.element.classList.add('panel');
 
       if (disposition === Overlay.PanelDisposition.Left) {
         this.element.classList.add('left');
-      } else {
+      } else if (disposition === Overlay.PanelDisposition.Right) {
         this.element.classList.add('right');
       }
+    } else {
+      this.element.classList.add('floating-panel');
     }
 
     this.#registerCloseEventListener();
   }
 
   show() {
-    this.#mask.show();
+    if (this.#shouldDisplayMask) {
+      this.#mask.show();
+    }
+
     super.show();
   }
 
   close(ok = false) {
     if (this.onClose(ok)) {
-      this.#mask.close();
+      if (this.#shouldDisplayMask) {
+        this.#mask.close();
+      }
       super.close();
     }
   }
@@ -115,5 +135,19 @@ export class Overlay extends Component {
     this.element
       .querySelector('div.action-buttons-container')
       ?.appendChild(this.#negativeActionButton);
+  }
+
+  /**
+   * Determines if the dialog blanked should be displayed
+   * @param {boolean} val
+   */
+  setShouldDisplayMask(val) {
+    this.#shouldDisplayMask = val;
+
+    if (val) {
+      this.#mask.show();
+    } else {
+      this.#mask.hide();
+    }
   }
 }

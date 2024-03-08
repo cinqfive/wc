@@ -1,5 +1,6 @@
 import { Button } from './button';
 import { Caroussel } from './caroussel';
+import { CreateButton } from './create-button';
 import { Input } from './input';
 import { SearchInput } from './search-input';
 
@@ -11,6 +12,8 @@ export * from './list';
 export * from './list-item';
 export * from './disposable-panel';
 export * from './dialog';
+export * from './create-button';
+export * from './menu';
 
 export class WebComponents {
   static registerAll() {
@@ -18,5 +21,6 @@ export class WebComponents {
     Input.register();
     SearchInput.register();
     Caroussel.register();
+    CreateButton.register();
   }
 }

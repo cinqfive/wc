@@ -10,11 +10,11 @@ export class Component {
     if (!element) {
       element = document.createElement('div');
       document.body.appendChild(element);
-      element.classList.add('component');
+      element.classList.add('invisible');
     }
 
     this.element = element;
-    this.element.classList.add('invisible');
+    this.element.classList.add('component');
   }
 
   show() {
@@ -42,15 +42,16 @@ export class Component {
    * @param {Component} component
    */
   appendTo(component) {
-    component.#appendChild(this.element);
+    component.appendChild(this.element);
   }
 
-  #appendChild(element) {
+  appendChild(element) {
     this.element.appendChild(element);
   }
 
   /**
-   * @param {{ top?: number; bottom?: number; left?: number; right?: number }}
+   * Sets up fixed positionning on the element
+   * @param {{ top?: number; bottom?: number; left?: number; right?: number }} coordinates
    */
   setFixPositionning(coordinates) {
     const styles = ['position: fixed'];

@@ -3,6 +3,7 @@ import { Component } from './component';
 const buttons = [];
 
 export class Button extends Component {
+  id = null;
   /**
    *
    * @param {HTMLButtonElement} element
@@ -14,6 +15,7 @@ export class Button extends Component {
 
   setup() {
     this.element.addEventListener('click', () => this.onClick());
+    this.id = this.element.id;
   }
 
   addOnClickListener(callback) {
@@ -47,5 +49,14 @@ export class Button extends Component {
       const button = new Button(element);
       buttons.push(button);
     });
+  }
+
+  /**
+   * Gets a button by its element id
+   * @param {string} id The looked up id
+   * @returns {Button|undefined} The looked up button or undefined when none is found
+   */
+  static getById(id) {
+    return buttons.find((b) => b.id === id);
   }
 }
