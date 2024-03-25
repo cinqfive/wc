@@ -1,17 +1,23 @@
 import { Component } from './component';
 import { DialogMask } from './dialog-mask';
 
-function createElement(title) {
+function createElement(title, subtitle = null) {
   const element = document.createElement('div');
 
   element.innerHTML = `
           <span class="title">${title}</span>
+          ${
+            subtitle
+              ? '<h3 contenteditable class="blog-title">Sans titre</h3>'
+              : ''
+          }
           <button class="close-button" role="close-button">
               <span class="material-symbols-outlined">close</span>
           </button>
           <div class="overlay-content"></div>
           <div class="action-buttons-container"><span class="flex-expand"></span></div>`;
   document.body.appendChild(element);
+
   return element;
 }
 
@@ -47,7 +53,9 @@ export class Overlay extends Component {
     element = null,
   ) {
     super(
-      element ? element : createElement(title ? title : 'Nouveaux Produit'),
+      element
+        ? element
+        : createElement(title ? title : 'Nouveaux Produit', 'Blogs'),
     );
     this.element.classList.add('overlay');
     this.element.classList.add('invisible');
@@ -75,6 +83,15 @@ export class Overlay extends Component {
     }
 
     super.show();
+  }
+
+  /**
+   * Replaces the content of the inner .overlay-content with the given component's element
+   * @param {Component} other The component to append
+   */
+  setOverlayContent(other) {
+    this.element.querySelector('.overlay-content').innerHTML = '';
+    this.element.querySelector('.overlay-content')?.appendChild(other.element);
   }
 
   close(ok = false) {

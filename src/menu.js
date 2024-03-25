@@ -38,8 +38,6 @@ export class Menu extends Component {
       this.hide();
     });
 
-    console.log(onClick);
-
     return itemElement;
   }
 }

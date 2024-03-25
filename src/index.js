@@ -14,6 +14,7 @@ export * from './disposable-panel';
 export * from './dialog';
 export * from './create-button';
 export * from './menu';
+export * from './markdown-editor';
 
 export class WebComponents {
   static registerAll() {
