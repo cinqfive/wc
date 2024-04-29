@@ -1,0 +1,41 @@
+.field {
+  display: flex;
+  flex-direction: column;
+
+  width: fit-content;
+
+  &.error {
+    .input-field {
+      border: 2px solid red;
+      color: red;
+
+      &:focus {
+        outline: solid 2px red;
+      }
+    }
+  }
+
+  .input-field {
+    &:focus {
+      outline: solid 2px #000;
+    }
+  }
+
+  .hint {
+    font-size: 10px;
+  }
+
+  .error {
+    color: red;
+    font-size: 10px;
+  }
+
+  .hint,
+  .error {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+  }
+}

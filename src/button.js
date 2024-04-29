@@ -5,11 +5,17 @@ const buttons = [];
 export class Button extends Component {
   id = null;
   /**
-   *
-   * @param {HTMLButtonElement} element
+   * Creates a Button component
+   * @param {HTMLButtonElement} element The Button element
+   * @param {string} text The button's text
    */
-  constructor(element) {
+  constructor(element, text) {
     super(element);
+
+    if (text) {
+      this.element.innerText = text;
+    }
+
     this.setup();
   }
 
@@ -58,5 +64,17 @@ export class Button extends Component {
    */
   static getById(id) {
     return buttons.find((b) => b.id === id);
+  }
+}
+
+export class SubmitButton extends Button {
+  /**
+   * Creates a sybmit type of button component
+   * @param {HTMLButtonElement} element the button element
+   * @param {string} text The button's text
+   */
+  constructor(element, text) {
+    super(element, text);
+    this.element.type = 'submit';
   }
 }

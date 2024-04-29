@@ -39,7 +39,7 @@ export class MarkdownEditor extends Component {
         this.#textarea.value.length,
       );
       const imageProccurementId = this.#imageProccurementId++;
-      const textToInsert = `<! Chargement de l'image [${file.name}] (pid: ${imageProccurementId})-->`;
+      const textToInsert = ` <! Chargement de l'image [${file.name}] (pid: ${imageProccurementId})--> `;
 
       this.#textarea.value =
         valueBeforeCursor + textToInsert + valueAfterCursor;
@@ -48,7 +48,7 @@ export class MarkdownEditor extends Component {
 
       while (this.#editorIsLocked);
 
-      const markdownImageUrl = `![Image ${imageProccurementId}](${fileURL})`;
+      const markdownImageUrl = ` ![Image ${imageProccurementId}](${fileURL}) `;
       this.#textarea.value = this.#textarea.value.replace(
         textToInsert,
         markdownImageUrl,
